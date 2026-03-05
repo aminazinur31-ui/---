@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-ассистент юрист — защита прав и законный бизнес</title>
+  <meta name="description" content="AI-ассистент, который помогает потребителям защищать права, а предпринимателям — вести бизнес законно. Быстро, понятно, 24/7." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#101a33;
+      --muted:#a9b2c6;
+      --text:#eef2ff;
+      --primary:#6ee7ff;
+      --primary2:#a78bfa;
+      --line:rgba(255,255,255,.12);
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(110,231,255,.18), transparent 55%),
+                  radial-gradient(900px 600px at 80% 10%, rgba(167,139,250,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.7);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .logo{
+      width:36px;height:36px;border-radius:12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 10px 25px rgba(110,231,255,.18);
+    }
+    .nav-links{display:flex; gap:18px; color:var(--muted); font-weight:600; font-size:14px}
+    .nav-links a:hover{color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.20)}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      color:#071023;
+    }
+    .btn.primary:hover{filter:brightness(1.03)}
+    .hero{
+      padding:70px 0 32px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .badge{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background: rgba(255,255,255,.04);
+      font-weight:700;
+      font-size:13px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 6px rgba(110,231,255,.14);
+    }
+    h1{margin:14px 0 12px; font-size:46px; line-height:1.05; letter-spacing:-.02em}
+    .sub{color:var(--muted); font-size:17px; max-width:55ch}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    .mini{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; color:var(--muted); font-size:13px;
+    }
+    .mini span{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background: rgba(255,255,255,.03);
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card{padding:18px}
+    .hero-card h3{margin:2px 0 10px; font-size:16px}
+    .hero-card p{margin:0 0 14px; color:var(--muted); font-size:14px}
+    .form{
+      display:grid; gap:10px;
+    }
+    label{font-size:12px; color:var(--muted); font-weight:700}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(7,12,24,.55);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:94px; resize:vertical}
+    .hint{font-size:12px; color:var(--muted); margin-top:10px}
+    .section{padding:44px 0}
+    .section h2{margin:0 0 12px; font-size:28px; letter-spacing:-.01em}
+    .section p.lead{margin:0 0 18px; color:var(--muted); max-width:75ch}
+    .grid-3{
+      display:grid; gap:16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .grid-2{
+      display:grid; gap:16px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .feature{padding:18px}
+    .feature h3{margin:6px 0 6px; font-size:16px}
+    .feature p{margin:0; color:var(--muted); font-size:14px}
+    .icon{
+      width:42px; height:42px; border-radius:14px;
+      background: rgba(110,231,255,.12);
+      border:1px solid rgba(110,231,255,.22);
+      display:grid; place-items:center;
+      font-weight:900;
+      color: var(--primary);
+    }
+    .steps .step{padding:18px}
+    .step b{display:inline-flex; gap:10px; align-items:center}
+    .num{
+      width:30px; height:30px; border-radius:12px;
+      display:grid; place-items:center;
+      background: rgba(167,139,250,.14);
+      border:1px solid rgba(167,139,250,.22);
+      color: var(--primary2);
+      font-weight:900;
+    }
+    .split{
+      display:grid; grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+    .cta{
+      padding:22px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:18px;
+    }
+    .cta h3{margin:0 0 6px; font-size:18px}
+    .cta p{margin:0; color:var(--muted)}
+    footer{
+      padding:26px 0 40px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:30px;
+    }
+    .small{font-size:12px}
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr}
+      h1{font-size:38px}
+      .grid-3{grid-template-columns: 1fr}
+      .grid-2{grid-template-columns: 1fr}
+      .split{grid-template-columns: 1fr}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>LegalAI Assistant</div>
+      </div>
+      <div class="nav-links">
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#features">Преимущества</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a class="btn" href="#try">Попробовать</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge"><span class="dot" aria-hidden="true"></span> 24/7 AI-ассистент: права потребителей + законный бизнес</div>
+        <h1>Защити свои права<br/>или веди бизнес законно</h1>
+        <p class="sub">
+          Опиши ситуацию — получи понятное объяснение, пошаговый план действий и шаблон документов.
+          Для потребителей и предпринимателей (18–50).
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#try">Проверить ситуацию</a>
+          <a class="btn" href="#business">Хочу вести бизнес законно</a>
+        </div>
+
+        <div class="mini">
+          <span>✅ 3 минуты до результата</span>
+          <span>✅ Шаблоны претензий</span>
+          <span>✅ Чек-листы для бизнеса</span>
+        </div>
+      </div>
+
+      <div class="card hero-card" id="try">
+        <h3>Быстрая проверка</h3>
+        <p>Выбери режим и коротко опиши ситуацию — мы покажем пример результата (демо).</p>
+
+        <form class="form" id="demoForm">
+          <div>
+            <label for="mode">Я —</label>
+            <select id="mode" required>
+              <option value="consumer">Потребитель (мои права нарушили)</option>
+              <option value="business">Предприниматель (хочу работать законно)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="topic">Ситуация</label>
+            <input id="topic" type="text" placeholder="Напр.: отказ в возврате денег / спор по подписке" required />
+          </div>
+
+          <div>
+            <label for="details">Детали (1–3 предложения)</label>
+            <textarea id="details" placeholder="Что произошло? Когда? Что ответил бизнес?"></textarea>
+          </div>
+
+          <button type="submit" class="btn primary">Показать демо-ответ</button>
+          <div class="hint">⚠️ Демо-версия: не является официальной юридической консультацией.</div>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section class="section" id="problem">
+    <div class="wrap">
+      <h2>Почему это нужно</h2>
+      <p class="lead">
+        Потребители часто сталкиваются с отказом в возврате, незаконными условиями и стрессом.
+        Предприниматели — с риском штрафов из-за незнания правил.
+        Юридическая помощь для многих слишком дорогая или сложная.
+      </p>
+
+      <div class="grid-3">
+        <div class="card feature">
+          <div class="icon">⚖️</div>
+          <h3>Сложный закон</h3>
+          <p>Нормы написаны юридическим языком, трудно быстро понять, что делать.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon">⏳</div>
+          <h3>Потеря времени</h3>
+          <p>Переписки, звонки, ожидание ответа — конфликт затягивается.</p>
+        </div>
+
+        <div class="card feature">
+          <div class="icon">💸</div>
+          <h3>Дорого</h3>
+          <p>Консультации и сопровождение не всем доступны, особенно в “мелких” спорах.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section" id="solution">
+    <div class="wrap">
+      <h2>Решение</h2>
+      <p class="lead">
+        AI-ассистент объясняет закон простым языком и выдаёт конкретный план действий.
+        Для потребителей — как вернуть деньги и отстоять права. Для бизнеса — как избежать нарушений.
+      </p>
+
+      <div class="grid-3 steps">
+        <div class="card step">
+          <b><span class="num">1</span> Опиши ситуацию</b>
+          <p class="small" style="color:var(--muted); margin:10px 0 0;">
+            Вводишь проблему и контекст (услуга/товар/подписка/договор).
+          </p>
+        </div>
+        <div class="card step">
+          <b><span class="num">2</span> Получи объяснение</b>
+          <p class="small" style="color:var(--muted); margin:10px 0 0;">
+            Понятно: что законно/незаконно, какие права/обязанности у сторон.
+          </p>
+        </div>
+        <div class="card step">
+          <b><span class="num">3</span> Действуй по шагам</b>
+          <p class="small" style="color:var(--muted); margin:10px 0 0;">
+            Алгоритм действий + шаблоны претензий/ответов/чек-листы.
+          </p>
+        </div>
+      </div>
+
+      <div class="split" style="margin-top:16px;">
+        <div class="card feature" id="business">
+          <div class="icon">👤</div>
+          <h3>Для потребителей</h3>
+          <p>Возвраты, спорные условия, недобросовестные услуги, претензии.</p>
+          <div class="pill-row">
+            <span class="pill">Шаблон претензии</span>
+            <span class="pill">План действий</span>
+            <span class="pill">Куда жаловаться</span>
+          </div>
+        </div>
+        <div class="card feature">
+          <div class="icon">🏢</div>
+          <h3>Для предпринимателей</h3>
+          <p>Чек-лист законной политики возврата, договоры, правила сервиса.</p>
+          <div class="pill-row">
+            <span class="pill">Проверка правил</span>
+            <span class="pill">Риски и штрафы</span>
+            <span class="pill">Шаблоны документов</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <h2>Преимущества</h2>
+      <p class="lead">Быстро, понятно, масштабируемо — и снижает количество конфликтов.</p>
+
+      <div class="grid-3">
+        <div class="card feature">
+          <div class="icon">🌙</div>
+          <h3>24/7</h3>
+          <p>Доступ в любое время — даже ночью перед дедлайном или конфликтом.</p>
+        </div>
+        <div class="card feature">
+          <div class="icon">🧾</div>
+          <h3>Документы</h3>
+          <p>Готовые шаблоны: претензии, ответы, чек-листы.</p>
+        </div>
+        <div class="card feature">
+          <div class="icon">🧠</div>
+          <h3>Просто</h3>
+          <p>Объясняет юридические нормы человеческим языком.</p>
+        </div>
+      </div>
+
+      <div class="card cta" style="margin-top:16px;">
+        <div>
+          <h3>Готовы проверить ситуацию?</h3>
+          <p>Получите демо-ответ и следующий шаг — за 3 минуты.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="#try">Начать</a>
+          <a class="btn" href="#faq">Посмотреть FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <div class="grid-2">
+        <div class="card feature">
+          <h3>Это официальный юрист?</h3>
+          <p>Нет. Это информационный ассистент: помогает понять ситуацию и подготовить шаги и документы.</p>
+        </div>
+        <div class="card feature">
+          <h3>Для какой страны работает?</h3>
+          <p>В демо — общий подход. Для запуска добавь локальную базу законов (например, Казахстан) и ссылки на нормы.</p>
+        </div>
+        <div class="card feature">
+          <h3>Чем отличается от поиска в интернете?</h3>
+          <p>Даёт структуру: “что важно”, “какие шаги”, “какой документ”, “куда обращаться”.</p>
+        </div>
+        <div class="card feature">
+          <h3>Как можно монетизировать?</h3>
+          <p>Freemium, подписка, платные шаблоны, B2B-доступ для бизнеса.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>LegalAI Assistant</div>
+        </div>
+        <div class="small">© <span id="year"></span> • Демо-лендинг. Не является юридической консультацией.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Demo response generator (placeholder)
+    const form = document.getElementById('demoForm');
+    const mode = document.getElementById('mode');
+    const topic = document.getElementById('topic');
+    const details = document.getElementById('details');
+
+    function makeDemoAnswer(kind, t, d){
+      const base = [
+        `Тема: ${t}`,
+        d ? `Детали: ${d}` : null,
+        "",
+        "Что делать дальше (пример):",
+      ].filter(Boolean);
+
+      if(kind === "consumer"){
+        base.push(
+          "1) Соберите доказательства (чек/переписка/договор/скриншоты).",
+          "2) Напишите претензию в адрес бизнеса (мы сформируем шаблон).",
+          "3) Если нет ответа — обращайтесь в уполномоченный орган/службу защиты прав и приложите копии.",
+          "",
+          "Шаблон претензии: (здесь будет сгенерированный текст под вашу ситуацию)."
+        );
+      } else {
+        base.push(
+          "1) Проверьте правила возврата/оказания услуг: сроки, условия, оферта.",
+          "2) Обновите договор/публичную оферту и политику возвратов (мы дадим чек-лист).",
+          "3) Настройте шаблон ответа клиенту и процесс обработки жалоб.",
+          "",
+          "Чек-лист: (здесь будут пункты соответствия закону и риски)."
+        );
+      }
+      return base.join("\n");
+    }
+
+    function showModal(text){
+      const existing = document.getElementById('modal');
+      if(existing) existing.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'modal';
+      modal.style.position = 'fixed';
+      modal.style.inset = '0';
+      modal.style.background = 'rgba(0,0,0,.55)';
+      modal.style.display = 'grid';
+      modal.style.placeItems = 'center';
+      modal.style.padding = '18px';
+      modal.style.zIndex = '50';
+
+      const box = document.createElement('div');
+      box.className = 'card';
+      box.style.maxWidth = '820px';
+      box.style.width = '100%';
+      box.style.padding = '18px';
+
+      const header = document.createElement('div');
+      header.style.display='flex';
+      header.style.justifyContent='space-between';
+      header.style.alignItems='center';
+      header.style.gap='10px';
+
+      const title = document.createElement('div');
+      title.style.fontWeight='900';
+      title.textContent='Демо-ответ';
+
+      const close = document.createElement('button');
+      close.className='btn';
+      close.type='button';
+      close.textContent='Закрыть';
+
+      const pre = document.createElement('pre');
+      pre.style.whiteSpace='pre-wrap';
+      pre.style.margin='12px 0 0';
+      pre.style.padding='14px';
+      pre.style.borderRadius='14px';
+      pre.style.border='1px solid rgba(255,255,255,.14)';
+      pre.style.background='rgba(7,12,24,.55)';
+      pre.style.color='var(--text)';
+      pre.textContent=text;
+
+      const note = document.createElement('div');
+      note.className='hint';
+      note.style.marginTop='10px';
+      note.textContent='⚠️ Это демонстрация. Для реального продукта добавьте локальные нормы и ссылки на статьи закона.';
+
+      header.appendChild(title);
+      header.appendChild(close);
+      box.appendChild(header);
+      box.appendChild(pre);
+      box.appendChild(note);
+      modal.appendChild(box);
+      document.body.appendChild(modal);
+
+      close.addEventListener('click', ()=> modal.remove());
+      modal.addEventListener('click', (e)=> { if(e.target === modal) modal.remove(); });
+      document.addEventListener('keydown', function esc(ev){
+        if(ev.key === 'Escape'){
+          modal.remove();
+          document.removeEventListener('keydown', esc);
+        }
+      });
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const ans = makeDemoAnswer(mode.value, topic.value.trim(), details.value.trim());
+      showModal(ans);
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
